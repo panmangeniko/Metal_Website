@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Μεταλλικές Κατασκευές | Αρχική</title>
+<meta name="description" content="Μεταλλικές κατασκευές, κοπή, κάμψη, συγκόλληση. Επικοινωνήστε μαζί μας σήμερα.">
+<style>
+  :root{
+    --dark:#12161b;
+    --dark2:#1c2229;
+    --accent:#FFDE59;
+    --accent2:#e9ec2a;
+    --light:#f4f5f7;
+    --gray:#8a919b;
+    --steel:#3a4552;
+    --radius:10px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Segoe UI', Roboto, Arial, sans-serif;
+    background:var(--light);
+    color:#20242a;
+    line-height:1.6;
+  }
+  img{max-width:100%;display:block;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  .container{max-width:1180px;margin:0 auto;padding:0 24px;}
+  section{padding:80px 0;}
+  h1,h2,h3{font-family:'Segoe UI', Roboto, Arial, sans-serif;font-weight:800;}
+  .eyebrow{
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:0.8rem;
+    font-weight:700;
+    margin-bottom:10px;
+    display:block;
+  }
+  .section-title{font-size:2.2rem;margin-bottom:16px;color:var(--dark);}
+  .section-sub{color:var(--gray);max-width:640px;margin-bottom:48px;font-size:1.05rem;}
+
+  header{
+    position:fixed;top:0;left:0;right:0;
+    background:rgba(18,22,27,0.96);
+    z-index:1000;
+    box-shadow:0 2px 12px rgba(0,0,0,0.25);
+  }
+  .navbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;max-width:1180px;margin:0 auto;
+  }
+  .logo{
+    color:#fff;font-size:1.4rem;font-weight:800;letter-spacing:1px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .logo span{color:var(--accent);}
+  nav ul{display:flex;gap:32px;}
+  nav a{
+    color:#dfe3e8;font-weight:600;font-size:0.95rem;
+    transition:color .2s;
+    position:relative;
+  }
+  nav a:hover{color:var(--accent);}
+  .nav-cta{
+    background:var(--accent);color:#fff!important;
+    padding:10px 20px;border-radius:6px;font-weight:700;
+  }
+  .nav-cta:hover{background:var(--accent2)!important;color:var(--dark)!important;}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+  .burger span{width:26px;height:3px;background:#fff;border-radius:2px;}
+
+  .hero{
+    margin-top:0;
+    min-height:92vh;
+    display:flex;align-items:center;
+    position:relative;
+    background:
+      linear-gradient(120deg, rgba(18,22,27,0.92) 0%, rgba(18,22,27,0.65) 55%, rgba(18,22,27,0.3) 100%),
+      url('IMAGE_HERO_BACKGROUND.jpg') center/cover no-repeat;
+    background-color:#1c2229;
+    color:#fff;
+  }
+  .hero-content{max-width:680px;padding-top:60px;}
+  .hero h1{font-size:3.2rem;line-height:1.15;margin-bottom:20px;}
+  .hero h1 em{color:var(--accent);font-style:normal;}
+  .hero p{font-size:1.15rem;color:#c9ced4;margin-bottom:32px;max-width:560px;}
+  .btn-row{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:15px 30px;border-radius:6px;
+    font-weight:700;font-size:1rem;transition:.2s;
+  }
+  .btn-primary{background:var(--accent);color:#fff;}
+  .btn-primary:hover{background:var(--accent2);color:var(--dark);}
+  .btn-outline{border:2px solid #fff;color:#fff;}
+  .btn-outline:hover{background:#fff;color:var(--dark);}
+
+  .hero-stats{
+    display:flex;gap:40px;margin-top:56px;flex-wrap:wrap;
+  }
+  .stat b{font-size:2rem;color:var(--accent);display:block;}
+  .stat span{color:#c9ced4;font-size:0.9rem;}
+
+  .about{background:#fff;}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .about-img{
+    border-radius:var(--radius);overflow:hidden;
+    box-shadow:0 20px 40px rgba(0,0,0,0.15);
+    aspect-ratio:4/3;
+    background:#dfe3e8 url('IMAGE_ABOUT.jpg') center/cover no-repeat;
+  }
+  .about-list{margin-top:24px;}
+  .about-list li{
+    display:flex;gap:12px;margin-bottom:14px;color:#3a4552;font-weight:600;
+  }
+  .about-list li::before{
+    content:"✓";color:var(--accent);font-weight:900;
+  }
+
+  .services{background:var(--dark2);color:#fff;}
+  .services .eyebrow, .gallery .eyebrow, .contact .eyebrow{color:var(--accent);}
+  .services .section-title, .gallery .section-title{color:#fff;}
+  .services .section-sub, .gallery .section-sub{color:#a9b0b9;}
+  .service-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;
+  }
+  .service-card{
+    background:var(--steel);
+    padding:32px 28px;border-radius:var(--radius);
+    border-top:3px solid var(--accent);
+    transition:transform .2s, box-shadow .2s;
+  }
+  .service-card:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(0,0,0,0.35);}
+  .service-icon{font-size:2rem;margin-bottom:16px;}
+  .service-card h3{font-size:1.2rem;margin-bottom:10px;color:#fff;}
+  .service-card p{color:#c3c9d0;font-size:0.95rem;}
+
+  .gallery{background:#0e1216;color:#fff;}
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:18px;
+  }
+  .gallery-item{
+    position:relative;
+    border-radius:8px;
+    overflow:hidden;
+    aspect-ratio:4/3;
+    cursor:pointer;
+    background:#2a3038;
+  }
+  .gallery-item img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .35s ease;
+  }
+  .gallery-item:hover img{transform:scale(1.08);}
+  .gallery-overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,0.75), transparent 60%);
+    display:flex;align-items:flex-end;padding:14px;
+    opacity:0;transition:opacity .25s;
+  }
+  .gallery-item:hover .gallery-overlay{opacity:1;}
+  .gallery-overlay span{font-weight:700;font-size:0.95rem;}
+  .gallery-note{
+    margin-top:36px;padding:18px 22px;background:rgba(255,106,0,0.08);
+    border:1px dashed var(--accent);border-radius:8px;color:#ffcfa0;font-size:0.9rem;
+  }
+  .gallery-note code{background:rgba(0,0,0,0.35);padding:2px 6px;border-radius:4px;}
+
+  .lightbox{
+    display:none;position:fixed;inset:0;z-index:2000;
+    background:rgba(6,8,10,0.94);
+    align-items:center;justify-content:center;
+    flex-direction:column;
+  }
+  .lightbox:target{display:flex;}
+  .lightbox img{
+    max-width:88vw;max-height:78vh;border-radius:6px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.6);
+  }
+  .lightbox-caption{color:#fff;margin-top:16px;font-weight:600;}
+  .lb-close{
+    position:absolute;top:26px;right:34px;color:#fff;font-size:2.2rem;
+    font-weight:300;cursor:pointer;
+  }
+  .lb-nav{
+    position:absolute;top:50%;transform:translateY(-50%);
+    color:#fff;font-size:2.4rem;cursor:pointer;padding:10px 18px;
+    user-select:none;
+  }
+  .lb-prev{left:20px;} .lb-next{right:20px;}
+  .lb-nav:hover, .lb-close:hover{color:var(--accent);}
+
+  .materials{background:#fff;padding:56px 0;}
+  .materials-row{
+    display:flex;flex-wrap:wrap;gap:14px;justify-content:center;
+  }
+  .chip{
+    background:var(--light);border:1px solid #e1e4e8;
+    padding:10px 20px;border-radius:30px;font-weight:600;font-size:0.9rem;color:var(--dark);
+  }
+
+  /* ΕΤΑΙΡΙΚΑ ΣΤΟΙΧΕΙΑ - ΝΟΜΙΚΗ ΥΠΟΧΡΕΩΣΗ ΙΚΕ (Άρθρο 47 Ν.4072/2012) */
+  .company-info{background:#fff;}
+  .company-info .legal-ref{
+    color:var(--gray);font-size:0.85rem;margin-bottom:36px;font-style:italic;
+  }
+  .info-card{
+    background:var(--light);border:1px solid #e1e4e8;border-radius:var(--radius);
+    padding:36px;
+  }
+  .info-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:28px;margin-bottom:28px;
+  }
+  .info-item label{
+    display:block;font-size:0.78rem;text-transform:uppercase;letter-spacing:1px;
+    color:var(--accent);font-weight:700;margin-bottom:6px;
+  }
+  .info-item p{color:var(--dark);font-weight:600;font-size:1rem;margin:0;}
+  .info-divider{border:none;border-top:1px solid #e1e4e8;margin:28px 0;}
+  .partners-table{width:100%;border-collapse:collapse;margin-top:12px;}
+  .partners-table th{
+    text-align:left;font-size:0.78rem;text-transform:uppercase;letter-spacing:1px;
+    color:var(--accent);font-weight:700;padding:10px 12px;border-bottom:2px solid #e1e4e8;
+  }
+  .partners-table td{
+    padding:12px;border-bottom:1px solid #e1e4e8;font-size:0.95rem;color:var(--dark);
+  }
+  .liquidation-banner{
+    display:none;
+    background:#d9302f;color:#fff;font-weight:800;text-align:center;
+    padding:12px;border-radius:6px;margin-bottom:24px;text-transform:uppercase;letter-spacing:1px;
+  }
+  .company-info-note{
+    margin-top:28px;padding:16px 20px;background:rgba(255,106,0,0.06);
+    border:1px dashed var(--accent);border-radius:8px;color:#7a4a1f;font-size:0.88rem;
+  }
+  .company-info-note code{background:#eee;padding:2px 6px;border-radius:4px;}
+
+  .contact{background:var(--dark);color:#fff;}
+  .contact-wrap{max-width:760px;margin:0 auto;text-align:center;}
+  .contact-info-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:28px;margin-top:40px;text-align:left;
+  }
+  .contact-info-item{
+    display:flex;gap:16px;align-items:flex-start;
+    background:var(--dark2);padding:22px;border-radius:var(--radius);
+    border-top:3px solid var(--accent);
+  }
+  .contact-info-icon{
+    width:46px;height:46px;border-radius:50%;background:var(--accent);
+    display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;
+  }
+  .contact-info-item h4{font-size:1rem;margin-bottom:4px;}
+  .contact-info-item p, .contact-info-item a{color:#c3c9d0;font-size:0.95rem;}
+  .contact-cta{margin-top:40px;}
+
+  footer{
+    background:#0c0f12;color:#8a919b;text-align:center;padding:28px 0;font-size:0.88rem;
+  }
+  footer span{color:var(--accent);}
+
+  @media(max-width:900px){
+    .about-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:2.3rem;}
+    nav ul{
+      position:fixed;top:64px;right:0;background:var(--dark2);
+      flex-direction:column;width:220px;padding:20px;
+      transform:translateX(100%);transition:transform .3s;gap:18px;
+    }
+    nav ul.open{transform:translateX(0);}
+    .burger{display:flex;}
+    .partners-table{font-size:0.85rem;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="navbar">
+    <a href="#home" class="logo">ΜΕΤΑΛΟ<span>ΤΕΧΝΙΚΗ</span></a>
+    <nav>
+      <ul id="navMenu">
+        <li><a href="#home">Αρχική</a></li>
+        <li><a href="#about">Σχετικά</a></li>
+        <li><a href="#services">Υπηρεσίες</a></li>
+        <li><a href="#gallery">Φωτογραφίες</a></li>
+        <li><a href="#company-info">Εταιρικά Στοιχεία</a></li>
+        <li><a href="#contact" class="nav-cta">Επικοινωνία</a></li>
+      </ul>
+    </nav>
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-content">
+      <span class="eyebrow">Μεταλλικές Κατασκευές Υψηλής Ακρίβειας</span>
+      <h1>Κατασκευάζουμε το <em>μέταλλο</em><br>με ακρίβεια &amp; αντοχή</h1>
+      <p>Κοπή, κάμψη, συγκόλληση και συναρμολόγηση μετάλλου για βιομηχανικά, εμπορικά και οικιακά έργα. Από το σχέδιο στο τελικό προϊόν, με συνέπεια στους χρόνους παράδοσης.</p>
+      <div class="btn-row">
+        <a href="#contact" class="btn btn-primary">Επικοινωνήστε Μαζί μας</a>
+        <a href="#gallery" class="btn btn-outline">Δείτε τις Κατασκευές μας</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>30+</b><span>Χρόνια Εμπειρίας</span></div>
+        <div class="stat"><b>150+</b><span>Ολοκληρωμένα Έργα</span></div>
+        <div class="stat"><b>100%</b><span>Ελληνική Κατασκευή</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div class="Logo2.png"><img src="Logo2.png" alt="Logo"></div>
+    <div>
+      <span class="eyebrow">Ποιοι Είμαστε</span>
+      <h2 class="section-title">Οικογενειακή επιχείρηση με πάθος για το μέταλλο</h2>
+      <p class="section-sub" style="margin-bottom:20px;">
+        Εδώ και δύο δεκαετίες, το εργαστήριό μας εξειδικεύεται σε προσαρμοσμένες μεταλλικές κατασκευέςαπό κάγκελα και σκάλες μέχρι βιομηχανικά πλαίσια και μεταλλικές επενδύσεις. Χρησιμοποιούμε σύγχρονο εξοπλισμό κοπής και κάμψης, διασφαλίζοντας ακρίβεια σε κάθε λεπτομέρεια.
+      </p>
+      <ul class="about-list">
+        <li>Έμπειροι τεχνίτες &amp; συγκολλητές </li>
+        
+        <li>Παραδόσεις εντός συμφωνημένου χρόνου</li>
+        <li>Δωρεάν εκτίμηση &amp; προσφορά έργου</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="container">
+    <span class="eyebrow">Τι Κάνουμε</span>
+    <h2 class="section-title">Υπηρεσίες Μεταλλικών Κατασκευών</h2>
+    <p class="section-sub">Καλύπτουμε όλο το φάσμα επεξεργασίας μετάλλου, από τον σχεδιασμό έως την τελική εγκατάσταση.</p>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="service-icon">✂️</div>
+        <h3>Κοπή Μετάλλου</h3>
+        <p>Επεξεργαζόμαστε όλες τις εργασίες κοπής και διαμόρφωσης μετάλλου.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <h3>Κάμψη &amp; Μορφοποίηση</h3>
+        <p>Ακριβής κάμψη με στράντζα για σύνθετες γεωμετρίες και κατασκευές.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔥</div>
+        <h3>Συγκόλληση</h3>
+        <p>Συγκόλληση σε ατσάλι.</p>
+      </div>
+      <!--<div class="service-card">
+        <div class="service-icon">🎨</div>
+        <h3>Βαφή &amp; Φινίρισμα</h3>
+        <p>Ηλεκτροστατική βαφή, γαλβάνισμα και φινίρισμα αντιδιαβρωτικής προστασίας.</p>
+      </div>-->
+      <div class="service-card">
+        <div class="service-icon">🏗️</div>
+        <h3>Κατασκευές &amp; Σκάλες</h3>
+        <p>Κάγκελα, σκάλες, κιγκλιδώματα και μεταλλικές πόρτες κατά παραγγελία.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📐</div>
+        <h3>Σχεδιασμός &amp; Μελέτη</h3>
+        <p>Τεχνική μελέτη και σχέδια κατασκευής προσαρμοσμένα στις ανάγκες σας.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="container">
+    <span class="eyebrow">Οι Κατασκευές μας</span>
+    <h2 class="section-title">Φωτογραφικό Υλικό Έργων</h2>
+    <p class="section-sub">Μια ματιά στις κατασκευές που έχουμε ολοκληρώσει. Κάντε κλικ σε μια φωτογραφία για μεγέθυνση.</p>
+
+    <div class="gallery-grid">
+      <a href="#img1" class="gallery-item">
+        <img src="photo1.jpg" alt="Έργο 1">
+        <div class="gallery-overlay"><span>Σιλό με κοχλία για ζάχαρη</span></div>
+      </a>
+      <a href="#img2" class="gallery-item">
+        <img src="photo2.jpg" alt="Έργο 2">
+        <div class="gallery-overlay"><span>Σιλό ΙΝΟΧ αποθήκευσης και αερομεταφοράς</span></div>
+      </a>
+      <a href="#img3" class="gallery-item">
+        <img src="photo3.jpg" alt="Έργο 3">
+        <div class="gallery-overlay"><span>Σιλό αποθήκευσης και αερομεταφοράς για ζάχαρη</span></div>
+      </a>
+      <a href="#img4" class="gallery-item">
+        <img src="photo4.jpg" alt="Έργο 4">
+        <div class="gallery-overlay"><span>Αναδευτήρας</span></div>
+      </a>
+      <a href="#img5" class="gallery-item">
+        <img src="photo5.jpg" alt="Έργο 5">
+        <div class="gallery-overlay"><span>Aναδευτήρας ειδικώ υλικών</span></div>
+      </a>
+      <a href="#img6" class="gallery-item">
+        <img src="photo6.jpg" alt="Έργο 6">
+        <div class="gallery-overlay"><span>Κόσκινο με παλινδρομηκή κίνηση</span></div>
+      </a>
+      <a href="#img7" class="gallery-item">
+        <img src="photo7.jpg" alt="Έργο 7">
+        <div class="gallery-overlay"><span>Κόσκινο ρίγανης</span></div>
+      </a>
+      <a href="#img8" class="gallery-item">
+        <img src="photo8.jpg" alt="Έργο 8">
+        <div class="gallery-overlay"><span>Μεταλλικό σκέπαστρο</span></div>
+      </a>
+    </div>
+
+    
+  </div>
+</section>
+
+<div class="lightbox" id="img1">
+  <a href="#gallery" class="lb-close">&times;</a>
+  <a href="#img8" class="lb-nav lb-prev">&#10094;</a>
+  <img src="photo1.jpg" alt="Έργο 1">
+  <div class="lightbox-caption">Σιλό με κοχλία για ζάχαρη</div>
+  <a href="#img2" class="lb-nav lb-next">&#10095;</a>
+</div>
+<div class="lightbox" id="img2">
+  <a href="#gallery" class="lb-close">&times;</a>
+  <a href="#img1" class="lb-nav lb-prev">&#10094;</a>
+  <img src="photo2.jpg" alt="Έργο 2">
+  <div class="lightbox-caption">Σιλό ΙΝΟΧ αποθήκευσης και αερομεταφοράς</div>
+  <a href="#img3" class="lb-nav lb-next">&#10095;</a>
+</div>
+<div class="lightbox" id="img3">
+  <a href="#gallery" class="lb-close">&times;</a>
+  <a href="#img2" class="lb-nav lb-prev">&#10094;</a>
+  <img src="photo3.jpg" alt="Έργο 3">
+  <div class="lightbox-caption">Σιλό αποθήκευσης και αερομεταφοράς για ζάχαρη</div>
+  <a href="#img4" class="lb-nav lb-next">&#10095;</a>
+</div>
+<div class="lightbox" id="img4">
+  <a href="#gallery" class="lb-close">&times;</a>
+  <a href="#img3" class="lb-nav lb-prev">&#10094;</a>
+  <img src="photo4.jpg" alt="Έργο 4">
+  <div class="lightbox-caption">Αναδευτήρας</div>
+  <a href="#img5" class="lb-nav lb-next">&#10095;</a>
+</div>
+<div class="lightbox" id="img5">
+  <a href="#gallery" class="lb-close">&times;</a>
+  <a href="#img4" class="lb-nav lb-prev">&#10094;</a>
+  <img src="photo5.jpg" alt="Έργο 5">
+  <div class="lightbox-caption">Aναδευτήρας ειδικώ υλικών</div>
+  <a href="#img6" class="lb-nav lb-next">&#10095;</a>
+</div>
+<div class="lightbox" id="img6">
+  <a href="#gallery" class="lb-close">&times;</a>
+  <a href="#img5" class="lb-nav lb-prev">&#10094;</a>
+  <img src="photo6.jpg" alt="Έργο 6">
+  <div class="lightbox-caption">Κόσκινο με παλινδρομηκή κίνηση</div>
+  <a href="#img7" class="lb-nav lb-next">&#10095;</a>
+</div>
+<div class="lightbox" id="img7">
+  <a href="#gallery" class="lb-close">&times;</a>
+  <a href="#img6" class="lb-nav lb-prev">&#10094;</a>
+  <img src="photo7.jpg" alt="Έργο 7">
+  <div class="lightbox-caption">Κόσκινο ρίγανης</div>
+  <a href="#img8" class="lb-nav lb-next">&#10095;</a>
+</div>
+<div class="lightbox" id="img8">
+  <a href="#gallery" class="lb-close">&times;</a>
+  <a href="#img7" class="lb-nav lb-prev">&#10094;</a>
+  <img src="photo8.jpg" alt="Έργο 8">
+  <div class="lightbox-caption">Μεταλλικό σκέπαστρο</div>
+  <a href="#img1" class="lb-nav lb-next">&#10095;</a>
+</div>
+
+<!--
+<section class="materials">
+  <div class="container">
+    <span class="eyebrow">Υλικά</span>
+    <h2 class="section-title" style="font-size:1.6rem;">Δουλεύουμε με</h2>
+    <div class="materials-row">
+      <span class="chip">Ανθρακούχο Χάλυβα</span>
+      <span class="chip">Ανοξείδωτο Ατσάλι 304 / 316</span>
+      <span class="chip">Αλουμίνιο 5052 / 6061</span>
+      <span class="chip">Γαλβανισμένη Λαμαρίνα</span>
+      <span class="chip">Χυτοσίδηρο</span>
+      <span class="chip">Χαλκό &amp; Ορείχαλκο</span>
+    </div>
+  </div>
+</section>
+-->
+
+<section class="company-info" id="company-info">
+  <div class="container">
+    <span class="eyebrow">Εταιρική Διαφάνεια</span>
+    <h2 class="section-title">Εταιρικά Στοιχεία</h2>
+    <p class="legal-ref">Δημοσιοποίηση σύμφωνα με το Άρθρο 47 1 &amp; 2 του Ν. 4072/2012 (υποχρέωση ΙΚΕ) και την ΚΥΑ 46982/2025.</p>
+
+    <div class="info-card">
+
+      <div class="liquidation-banner" id="liquidationBanner">Η εταιρεία τελεί υπό εκκαθάριση</div>
+
+      <div class="info-grid">
+        <div class="info-item">
+          <label>Πλήρης Επωνυμία</label>
+          <p>ΜΕΤΑΛΟΤΕΧΝΙΚΗ ΝΙΚΑΙΑΣ Ι.Κ.Ε.</p>
+        </div>
+        <div class="info-item">
+          <label>Διακριτικός Τίτλος</label>
+          <p>ΜΕΤΑΛΟΤΕΧΝΙΚΗ ΝΙΚΑΙΑΣ </p>
+        </div>
+        <div class="info-item">
+          <label>Αριθμός Γ.Ε.ΜΗ.</label>
+          <p>191571708000</p>
+        </div>
+        <div class="info-item">
+          <label>Α.Φ.Μ. / Δ.Ο.Υ.</label>
+          <p>803185140 — ΚΕΦΟΔΕ ΑΤΤΙΚΗΣ</p>
+        </div>
+        <div class="info-item">
+          <label>Έδρα</label>
+          <p>Οδός ΔΙΟΓΕΝΟΥΣ 9, Τ.Κ. 18452, ΝΙΚΑΙΑ, Αθήνα, Ελλάδα</p>
+        </div>
+        <div class="info-item">
+          <label>Διαχειριστής</label>
+          <p>ΓΕΩΡΓΙΟΣ ΚΑΙΑΦΑΣ</p>
+        </div>
+        <div class="info-item">
+          <label>Εταιρικό Κεφάλαιο</label>
+          <p>3.000,00 €</p>
+        </div>
+        <div class="info-item">
+          <label>Συνολικό Ποσό Εγγυητικών Εισφορών</label>
+          <p>0,00 € (Άρθρο 79 Ν.4072/2012)</p>
+        </div>
+      </div>
+
+      <hr class="info-divider">
+
+      <label style="display:block;font-size:0.78rem;text-transform:uppercase;letter-spacing:1px;color:var(--accent);font-weight:700;margin-bottom:14px;">Εταίροι &amp; Κατηγορία Εισφορών</label>
+      <table class="partners-table">
+        <thead>
+          <tr>
+            <th>Ονοματεπώνυμο</th>
+            <th>Διεύθυνση</th>
+            <th>Κατηγορία Εισφοράς</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ΓΕΩΡΓΙΟΣ ΚΑΙΑΦΑΣ</td>
+            <td>ΔΙΟΓΕΝΟΥΣ 9, 18452, ΝΙΚΑΙΑ</td>
+            <td>Κεφαλαιακή</td>
+          </tr>
+          <tr>
+            <td>ΕΛΕΥΘΕΡΙΑ ΜΑΡΓΙΕΤΑΚΗ</td>
+            <td>ΔΙΟΓΕΝΟΥΣ 9, 18452, ΝΙΚΑΙΑ</td>
+            <td>Κεφαλαιακή</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container contact-wrap">
+    <span class="eyebrow">Επικοινωνία</span>
+    <h2 class="section-title">Επικοινωνήστε Μαζί μας</h2>
+    <p class="section-sub" style="color:#a9b0b9;margin-left:auto;margin-right:auto;">Καλέστε μας ή στείλτε email και θα σας απαντήσουμε άμεσα για το έργο σας.</p>
+
+    <div class="contact-info-grid">
+      <div class="contact-info-item">
+        <div class="contact-info-icon">📍</div>
+        <div><h4>Διεύθυνση</h4><p>Αγίας Άννης 10, Ταύρος Αττικής</p></div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">📞</div>
+        <div><h4>Τηλέφωνο</h4><a href="tel:+302100000000">+30 6946339614</a></div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">✉️</div>
+        <div><h4>Email</h4><a href="mailto:info@metaltex.gr">kaiafasengineering@gmail.com</a></div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">🕐</div>
+        <div><h4>Ωράριο Λειτουργίας</h4><p>Δευ–Παρ: 08:00–16:00 | Σάββατο: 10:00–16:00</p></div>
+      </div>
+    </div>
+
+    <div class="contact-cta">
+      <a href="mailto:info@metaltex.gr" class="btn btn-primary">Στείλτε μας Email</a>
+      <a href="tel:+302100000000" class="btn btn-outline" style="margin-left:16px;">Καλέστε Τώρα</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    &copy; 2026 <span>ΜΕΤΑΛΤΕΧ</span> — Μεταλλικές Κατασκευές. Όλα τα δικαιώματα διατηρούνται.
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const navMenu = document.getElementById('navMenu');
+  burger.addEventListener('click', () => navMenu.classList.toggle('open'));
+  document.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('open')));
+</script>
+
+</body>
+</html>
